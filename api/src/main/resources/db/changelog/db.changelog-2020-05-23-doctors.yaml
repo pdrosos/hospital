@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-doctors-table
+      author: Pavlina Drosos
+      changes:
+        - createTable:
+            tableName: doctors
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthdate
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: biography
+                  type: varchar(2000)
+              - column:
+                  name: department_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_doctor_department
+                    references: departments(id)
+              - column:
+                  name: specialty_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_doctor_specialty
+                    references: medical_specialties(id)
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: fk_department_manager
+            baseTableName: departments
+            baseColumnNames: manager_id
+            referencedColumnNames: id
+            referencedTableName: doctors
+            onDelete: RESTRICT
+            validate: true

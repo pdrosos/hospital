@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-departments-table
+      author: Pavlina Drosos
+      changes:
+        - createTable:
+            tableName: departments
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(2000)
+              - column:
+                  name: manager_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: false

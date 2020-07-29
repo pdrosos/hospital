@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-doctor-examination-schedules-table
+      author: Pavlina Drosos
+      changes:
+        - createTable:
+            tableName: doctor_examination_schedules
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: doctor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_doctor_examination_schedule_doctor
+                    references: doctors(id)
+              - column:
+                  name: day_number_of_week
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_hour
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_hour
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration_minutes
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: false

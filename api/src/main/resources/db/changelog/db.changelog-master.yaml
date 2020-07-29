@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-medical-specialties.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-departments.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-doctors.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-doctor-examination-schedules.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-patients.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-examination-appointments.yaml
+  - include:
+      file: db/changelog/db.changelog-2020-05-23-examinations.yaml

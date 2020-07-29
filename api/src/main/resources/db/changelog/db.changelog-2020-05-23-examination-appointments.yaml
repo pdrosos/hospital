@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-examination-appointments-table
+      author: Pavlina Drosos
+      changes:
+        - createTable:
+            tableName: examination_appointments
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: doctor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_examination_appointment_doctor
+                    references: doctors(id)
+              - column:
+                  name: patient_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_examination_appointment_patient
+                    references: patients(id)
+              - column:
+                  name: start_datetime
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reason
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: medical_conditions
+                  type: varchar(2000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_by
+                  type: varchar(255)
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: false
