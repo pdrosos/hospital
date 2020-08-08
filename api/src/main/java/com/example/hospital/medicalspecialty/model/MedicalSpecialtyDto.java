@@ -1,32 +1,45 @@
-package com.example.hospital.common.entity;
+package com.example.hospital.medicalspecialty.model;
 
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+public class MedicalSpecialtyDto {
+    private Long id;
 
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-public abstract class AuditingEntity {
-    @CreatedBy
+    private String name;
+
+    private String description;
+
     private String createdBy;
 
-    @NotNull
-    @CreatedDate
     private Instant createdDate;
 
-    @LastModifiedBy
     private String modifiedBy;
 
-    @NotNull
-    @LastModifiedDate
     private Instant modifiedDate;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getCreatedBy() {
         return createdBy;

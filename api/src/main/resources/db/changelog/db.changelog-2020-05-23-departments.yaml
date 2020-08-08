@@ -24,8 +24,6 @@ databaseChangeLog:
               - column:
                   name: manager_id
                   type: bigint
-                  constraints:
-                    nullable: false
               - column:
                   name: created_by
                   type: varchar(255)

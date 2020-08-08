@@ -13,6 +13,7 @@ import com.example.hospital.patient.repository.PatientRepository;
 
 @Service
 public class PatientServiceImpl implements PatientService {
+
     private final PatientRepository patientRepository;
 
     public PatientServiceImpl(PatientRepository patientRepository) {
@@ -34,4 +35,5 @@ public class PatientServiceImpl implements PatientService {
 
         return patient.map(PatientMapper.INSTANCE::patientToPatientDto);
     }
+
 }

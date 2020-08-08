@@ -12,6 +12,11 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
+server:
+  error:
+    include-message: always
+    include-stacktrace: never
+
 logging:
   level:
     org.springframework.security: DEBUG

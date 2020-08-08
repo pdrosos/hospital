@@ -3,18 +3,19 @@ package com.example.hospital.patient.entity;
 import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-import com.example.hospital.common.entity.AuditingEntity;
+import com.example.hospital.common.entity.AuditableEntity;
 
 @Entity
 @Table(name="patients")
-public class Patient extends AuditingEntity {
+public class Patient extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,10 +46,6 @@ public class Patient extends AuditingEntity {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
