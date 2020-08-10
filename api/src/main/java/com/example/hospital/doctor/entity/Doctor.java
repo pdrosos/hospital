@@ -1,21 +1,16 @@
-package com.example.hospital.patient.entity;
+package com.example.hospital.doctor.entity;
 
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.example.hospital.common.entity.AuditableEntity;
 import com.example.hospital.common.entity.Gender;
 
 @Entity
-@Table(name="patients")
-public class Patient extends AuditableEntity {
+@Table(name="doctors")
+public class Doctor extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +21,8 @@ public class Patient extends AuditableEntity {
 
     @NotNull
     private String email;
+
+    private String title;
 
     @NotNull
     private String firstName;
@@ -40,13 +37,7 @@ public class Patient extends AuditableEntity {
     @NotNull
     private LocalDate dateOfBirth;
 
-    @NotNull
-    private String identityCardNumber;
-
-    @NotNull
-    private String personalNumber;
-
-    private String medicalConditions;
+    private String biography;
 
     public Long getId() {
         return id;
@@ -66,6 +57,14 @@ public class Patient extends AuditableEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getFirstName() {
@@ -100,27 +99,11 @@ public class Patient extends AuditableEntity {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getIdentityCardNumber() {
-        return identityCardNumber;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setIdentityCardNumber(String identityCardNumber) {
-        this.identityCardNumber = identityCardNumber;
-    }
-
-    public String getPersonalNumber() {
-        return personalNumber;
-    }
-
-    public void setPersonalNumber(String personalNumber) {
-        this.personalNumber = personalNumber;
-    }
-
-    public String getMedicalConditions() {
-        return medicalConditions;
-    }
-
-    public void setMedicalConditions(String medicalConditions) {
-        this.medicalConditions = medicalConditions;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 }

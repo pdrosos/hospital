@@ -1,4 +1,4 @@
-package com.example.hospital.patient.model;
+package com.example.hospital.doctor.model;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,9 @@ import javax.validation.constraints.NotNull;
 
 import com.example.hospital.common.entity.Gender;
 
-public class PatientUpdateDto {
+public class DoctorUpdateDto {
+
+    private String title;
 
     @NotBlank
     private String firstName;
@@ -21,13 +23,15 @@ public class PatientUpdateDto {
     @NotNull
     private LocalDate dateOfBirth;
 
-    @NotBlank
-    private String identityCardNumber;
+    private String biography;
 
-    @NotBlank
-    private String personalNumber;
+    public String getTitle() {
+        return title;
+    }
 
-    private String medicalConditions;
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -61,28 +65,12 @@ public class PatientUpdateDto {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getIdentityCardNumber() {
-        return identityCardNumber;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setIdentityCardNumber(String identityCardNumber) {
-        this.identityCardNumber = identityCardNumber;
-    }
-
-    public String getPersonalNumber() {
-        return personalNumber;
-    }
-
-    public void setPersonalNumber(String personalNumber) {
-        this.personalNumber = personalNumber;
-    }
-
-    public String getMedicalConditions() {
-        return medicalConditions;
-    }
-
-    public void setMedicalConditions(String medicalConditions) {
-        this.medicalConditions = medicalConditions;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 
 }

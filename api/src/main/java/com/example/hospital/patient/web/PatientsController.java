@@ -48,9 +48,9 @@ public class PatientsController {
         }
 
         try {
-            PatientDto medicalSpecialtyDto = patientService.update(id, patientUpdateDto);
+            PatientDto patientDto = patientService.update(id, patientUpdateDto);
 
-            return ResponseEntity.ok(medicalSpecialtyDto);
+            return ResponseEntity.ok(patientDto);
         } catch (EntityNotFoundException ex) {
             return Response.notFound(id);
         }

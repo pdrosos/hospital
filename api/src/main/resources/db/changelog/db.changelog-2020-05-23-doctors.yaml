@@ -20,6 +20,12 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
                   name: title
                   type: varchar(255)
               - column:
@@ -38,7 +44,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: birthdate
+                  name: date_of_birth
                   type: date
                   constraints:
                     nullable: false

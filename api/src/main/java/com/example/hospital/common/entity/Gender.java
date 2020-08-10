@@ -1,4 +1,4 @@
-package com.example.hospital.patient.entity;
+package com.example.hospital.common.entity;
 
 public enum Gender {
     Female,

@@ -12,6 +12,6 @@ public interface PatientService {
 
     Optional<PatientDto> findById(long id);
 
-    PatientDto update(Long id, PatientUpdateDto medicalSpecialtyUpdateDto);
+    PatientDto update(Long id, PatientUpdateDto patientUpdateDto);
 
 }
