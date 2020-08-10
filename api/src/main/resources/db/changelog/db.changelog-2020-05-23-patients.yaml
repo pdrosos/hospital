@@ -20,6 +20,12 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
                   name: first_name
                   type: varchar(255)
                   constraints:

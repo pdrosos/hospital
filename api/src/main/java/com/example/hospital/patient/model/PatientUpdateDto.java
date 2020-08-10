@@ -1,71 +1,32 @@
-package com.example.hospital.patient.entity;
+package com.example.hospital.patient.model;
 
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.example.hospital.patient.entity.Gender;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-import com.example.hospital.common.entity.AuditableEntity;
+public class PatientUpdateDto {
 
-@Entity
-@Table(name="patients")
-public class Patient extends AuditableEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    private String username;
-
-    @NotNull
-    private String email;
-
-    @NotNull
+    @NotBlank
     private String firstName;
 
-    @NotNull
+    @NotBlank
     private String lastName;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @NotNull
     private LocalDate dateOfBirth;
 
-    @NotNull
+    @NotBlank
     private String identityCardNumber;
 
-    @NotNull
+    @NotBlank
     private String personalNumber;
 
     private String medicalConditions;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -122,4 +83,5 @@ public class Patient extends AuditableEntity {
     public void setMedicalConditions(String medicalConditions) {
         this.medicalConditions = medicalConditions;
     }
+
 }

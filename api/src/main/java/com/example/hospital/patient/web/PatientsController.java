@@ -3,15 +3,17 @@ package com.example.hospital.patient.web;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.hospital.common.web.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import com.example.hospital.common.error.EntityNotFoundException;
+import com.example.hospital.common.web.Response;
 import com.example.hospital.patient.service.PatientService;
 import com.example.hospital.patient.model.PatientDto;
+import com.example.hospital.patient.model.PatientUpdateDto;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/patients")
@@ -35,4 +37,22 @@ public class PatientsController {
         return Response.of(patientDto, id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<? extends Object> updatePatient(
+            @PathVariable Long id,
+            @Valid @RequestBody PatientUpdateDto patientUpdateDto,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return Response.unprocessableEntity(bindingResult.getFieldErrors());
+        }
+
+        try {
+            PatientDto medicalSpecialtyDto = patientService.update(id, patientUpdateDto);
+
+            return ResponseEntity.ok(medicalSpecialtyDto);
+        } catch (EntityNotFoundException ex) {
+            return Response.notFound(id);
+        }
+    }
 }
