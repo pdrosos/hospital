@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 
-import com.example.hospital.common.error.EntityNotFoundException;
-import com.example.hospital.common.web.Response;
-import com.example.hospital.medicalspecialty.model.MedicalSpecialtyCreateDto;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.hospital.common.error.EntityNotFoundException;
+import com.example.hospital.common.web.Response;
+import com.example.hospital.medicalspecialty.model.MedicalSpecialtyCreateDto;
 import com.example.hospital.medicalspecialty.model.MedicalSpecialtyDto;
 import com.example.hospital.medicalspecialty.model.MedicalSpecialtyUpdateDto;
 import com.example.hospital.medicalspecialty.service.MedicalSpecialtyService;
