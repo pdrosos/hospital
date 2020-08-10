@@ -25,6 +25,12 @@ public class DoctorUpdateDto {
 
     private String biography;
 
+    @NotNull
+    private Long departmentId;
+
+    @NotNull
+    private Long specialtyId;
+
     public String getTitle() {
         return title;
     }
@@ -73,4 +79,19 @@ public class DoctorUpdateDto {
         this.biography = biography;
     }
 
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Long getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(Long specialtyId) {
+        this.specialtyId = specialtyId;
+    }
 }

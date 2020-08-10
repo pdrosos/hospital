@@ -1,5 +1,8 @@
 package com.example.hospital.doctor.model;
 
+import com.example.hospital.department.model.DepartmentDto;
+import com.example.hospital.medicalspecialty.model.MedicalSpecialtyDto;
+
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -21,6 +24,10 @@ public class DoctorDto {
     private LocalDate dateOfBirth;
 
     private String biography;
+
+    private DepartmentDto department;
+
+    private MedicalSpecialtyDto specialty;
 
     private String createdBy;
 
@@ -100,6 +107,22 @@ public class DoctorDto {
 
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+
+    public DepartmentDto getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentDto department) {
+        this.department = department;
+    }
+
+    public MedicalSpecialtyDto getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(MedicalSpecialtyDto specialty) {
+        this.specialty = specialty;
     }
 
     public String getCreatedBy() {

@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import com.example.hospital.common.entity.AuditableEntity;
 import com.example.hospital.common.entity.Gender;
+import com.example.hospital.department.entity.Department;
+import com.example.hospital.medicalspecialty.entity.MedicalSpecialty;
 
 @Entity
 @Table(name="doctors")
@@ -38,6 +40,16 @@ public class Doctor extends AuditableEntity {
     private LocalDate dateOfBirth;
 
     private String biography;
+
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "specialty_id")
+    private MedicalSpecialty specialty;
 
     public Long getId() {
         return id;
@@ -105,5 +117,21 @@ public class Doctor extends AuditableEntity {
 
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public MedicalSpecialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(MedicalSpecialty specialty) {
+        this.specialty = specialty;
     }
 }

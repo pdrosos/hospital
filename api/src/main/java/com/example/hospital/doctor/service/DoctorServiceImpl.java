@@ -1,5 +1,6 @@
 package com.example.hospital.doctor.service;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -10,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.hospital.common.error.EntityNotFoundException;
+import com.example.hospital.department.entity.Department;
+import com.example.hospital.department.repository.DepartmentRepository;
+import com.example.hospital.medicalspecialty.entity.MedicalSpecialty;
+import com.example.hospital.medicalspecialty.repository.MedicalSpecialtyRepository;
 import com.example.hospital.doctor.entity.Doctor;
 import com.example.hospital.doctor.mapper.DoctorMapper;
 import com.example.hospital.doctor.model.DoctorDto;
@@ -22,9 +27,17 @@ public class DoctorServiceImpl implements DoctorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DoctorService.class);
 
     private final DoctorRepository doctorRepository;
+    private final DepartmentRepository departmentRepository;
+    private final MedicalSpecialtyRepository medicalSpecialtyRepository;
 
-    public DoctorServiceImpl(DoctorRepository doctorRepository) {
+    public DoctorServiceImpl(
+            DoctorRepository doctorRepository,
+            MedicalSpecialtyRepository medicalSpecialtyRepository,
+            DepartmentRepository departmentRepository
+    ) {
         this.doctorRepository = doctorRepository;
+        this.departmentRepository = departmentRepository;
+        this.medicalSpecialtyRepository = medicalSpecialtyRepository;
     }
 
     @Override
@@ -53,14 +66,28 @@ public class DoctorServiceImpl implements DoctorService {
         LOGGER.debug("Updating doctor");
 
         Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
-
         if (optionalDoctor.isEmpty()) {
             throw new EntityNotFoundException(id);
         }
 
+        Optional<Department> optionalDepartment = departmentRepository.findById(doctorUpdateDto.getDepartmentId());
+        if (optionalDepartment.isEmpty()) {
+            throw new EntityNotFoundException(MessageFormat.format("Department with id {0} not found", doctorUpdateDto.getDepartmentId()));
+        }
+
+        Optional<MedicalSpecialty> optionalMedicalSpecialty = medicalSpecialtyRepository.findById(doctorUpdateDto.getSpecialtyId());
+        if (optionalMedicalSpecialty.isEmpty()) {
+            throw new EntityNotFoundException(MessageFormat.format("Medical specialty with id {0} not found", doctorUpdateDto.getSpecialtyId()));
+        }
+
         Doctor doctor = optionalDoctor.get();
+        Department department = optionalDepartment.get();
+        MedicalSpecialty medicalSpecialty = optionalMedicalSpecialty.get();
 
         DoctorMapper.INSTANCE.updateDoctorFromDoctorUpdateDto(doctorUpdateDto, doctor);
+        doctor.setDepartment(department);
+        doctor.setSpecialty(medicalSpecialty);
+
         doctor = doctorRepository.save(doctor);
 
         return DoctorMapper.INSTANCE.doctorToDoctorDto(doctor);
