@@ -1,6 +1,7 @@
 package com.example.hospital.doctor.entity;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -50,6 +51,9 @@ public class Doctor extends AuditableEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "specialty_id")
     private MedicalSpecialty specialty;
+
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<DoctorExaminationSchedule> examinationSchedule;
 
     public Long getId() {
         return id;
@@ -133,5 +137,13 @@ public class Doctor extends AuditableEntity {
 
     public void setSpecialty(MedicalSpecialty specialty) {
         this.specialty = specialty;
+    }
+
+    public Set<DoctorExaminationSchedule> getExaminationSchedule() {
+        return examinationSchedule;
+    }
+
+    public void addExaminationSchedule(DoctorExaminationSchedule examinationSchedule) {
+        this.examinationSchedule.add(examinationSchedule);
     }
 }

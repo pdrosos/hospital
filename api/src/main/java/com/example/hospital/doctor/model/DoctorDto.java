@@ -5,6 +5,7 @@ import com.example.hospital.medicalspecialty.model.MedicalSpecialtyDto;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 public class DoctorDto {
     private Long id;
@@ -28,6 +29,8 @@ public class DoctorDto {
     private DepartmentDto department;
 
     private MedicalSpecialtyDto specialty;
+
+    private List<DoctorExaminationScheduleDto> examinationSchedule;
 
     private String createdBy;
 
@@ -123,6 +126,14 @@ public class DoctorDto {
 
     public void setSpecialty(MedicalSpecialtyDto specialty) {
         this.specialty = specialty;
+    }
+
+    public List<DoctorExaminationScheduleDto> getExaminationSchedule() {
+        return examinationSchedule;
+    }
+
+    public void setExaminationSchedule(List<DoctorExaminationScheduleDto> examinationSchedule) {
+        this.examinationSchedule = examinationSchedule;
     }
 
     public String getCreatedBy() {

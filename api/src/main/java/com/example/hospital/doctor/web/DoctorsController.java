@@ -14,8 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/doctors")
-public class DoctorsController {
+public class DoctorsController implements DoctorsNamespace {
 
     private final DoctorService doctorService;
 
@@ -53,4 +52,5 @@ public class DoctorsController {
             return Response.notFound(id);
         }
     }
+
 }

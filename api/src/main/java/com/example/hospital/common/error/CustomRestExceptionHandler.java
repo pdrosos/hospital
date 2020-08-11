@@ -253,4 +253,18 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(apiErrorResponse, new HttpHeaders(), apiErrorResponse.getStatus());
     }
 
+    // Entity not found
+
+    @ExceptionHandler({ EntityNotFoundException.class })
+    public ResponseEntity<Object> handleEntityNotFound(final Exception ex, final WebRequest request) {
+        logger.info(ex.getClass().getName());
+        logger.error("error", ex);
+
+        var apiErrorResponse = new ApiErrorResponse(
+                HttpStatus.NOT_FOUND,
+                ex.getLocalizedMessage(),
+                ex.getLocalizedMessage());
+
+        return new ResponseEntity<Object>(apiErrorResponse, new HttpHeaders(), apiErrorResponse.getStatus());
+    }
 }
