@@ -43,6 +43,7 @@ public class PatientServiceImpl implements PatientService {
         return patient.map(PatientMapper.INSTANCE::patientToPatientDto);
     }
 
+    @Override
     public PatientDto update(
             Long id,
             PatientUpdateDto patientUpdateDto

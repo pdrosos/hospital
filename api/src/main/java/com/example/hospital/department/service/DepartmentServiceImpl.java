@@ -43,6 +43,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return department.map(DepartmentMapper.INSTANCE::departmentToDepartmentDto);
     }
 
+    @Override
     public DepartmentDto create(DepartmentCreateDto departmentCreateDto) {
         Objects.requireNonNull(departmentCreateDto);
 
@@ -56,6 +57,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return DepartmentMapper.INSTANCE.departmentToDepartmentDto(department);
     }
 
+    @Override
     public DepartmentDto update(
             Long id,
             DepartmentUpdateDto departmentUpdateDto
@@ -79,6 +81,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return DepartmentMapper.INSTANCE.departmentToDepartmentDto(department);
     }
 
+    @Override
     public DepartmentDto delete(Long id)  {
         Objects.requireNonNull(id);
 

@@ -52,7 +52,8 @@ public class Doctor extends AuditableEntity {
     @JoinColumn(name = "specialty_id")
     private MedicalSpecialty specialty;
 
-    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OrderBy("dayNumberOfWeek ASC, startHour ASC")
     private Set<DoctorExaminationSchedule> examinationSchedule;
 
     public Long getId() {
@@ -145,5 +146,10 @@ public class Doctor extends AuditableEntity {
 
     public void addExaminationSchedule(DoctorExaminationSchedule examinationSchedule) {
         this.examinationSchedule.add(examinationSchedule);
+    }
+
+    public void removeExaminationSchedule(DoctorExaminationSchedule examinationSchedule) {
+        this.examinationSchedule.remove(examinationSchedule);
+        examinationSchedule.setDoctor(null);
     }
 }

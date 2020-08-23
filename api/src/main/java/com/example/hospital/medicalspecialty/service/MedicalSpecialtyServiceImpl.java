@@ -44,6 +44,7 @@ public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
         return medicalSpecialty.map(MedicalSpecialtyMapper.INSTANCE::medicalSpecialtyToMedicalSpecialtyDto);
     }
 
+    @Override
     public MedicalSpecialtyDto create(MedicalSpecialtyCreateDto medicalSpecialtyCreateDto) {
         Objects.requireNonNull(medicalSpecialtyCreateDto);
 
@@ -57,6 +58,7 @@ public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
         return MedicalSpecialtyMapper.INSTANCE.medicalSpecialtyToMedicalSpecialtyDto(medicalSpecialty);
     }
 
+    @Override
     public MedicalSpecialtyDto update(
             Long id,
             MedicalSpecialtyUpdateDto medicalSpecialtyUpdateDto
@@ -80,6 +82,7 @@ public class MedicalSpecialtyServiceImpl implements MedicalSpecialtyService {
         return MedicalSpecialtyMapper.INSTANCE.medicalSpecialtyToMedicalSpecialtyDto(medicalSpecialty);
     }
 
+    @Override
     public MedicalSpecialtyDto delete(Long id)  {
         Objects.requireNonNull(id);
 

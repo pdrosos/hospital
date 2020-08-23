@@ -5,7 +5,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.hospital.medicalspecialty.model.MedicalSpecialtyDto;
+import com.example.hospital.doctor.service.DoctorExaminationScheduleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,26 +15,26 @@ import com.example.hospital.common.web.Response;
 import com.example.hospital.doctor.model.DoctorExaminationScheduleDto;
 import com.example.hospital.doctor.model.DoctorExaminationScheduleCreateDto;
 import com.example.hospital.doctor.model.DoctorExaminationScheduleUpdateDto;
-import com.example.hospital.doctor.service.DoctorService;
 
 @RestController
 public class DoctorExaminationSchedulesController implements DoctorsNamespace {
 
-    private final DoctorService doctorService;
+    private final DoctorExaminationScheduleService doctorExaminationScheduleService;
 
-    public DoctorExaminationSchedulesController(DoctorService doctorService) {
-        this.doctorService = doctorService;
+    public DoctorExaminationSchedulesController(DoctorExaminationScheduleService doctorExaminationScheduleService) {
+        this.doctorExaminationScheduleService = doctorExaminationScheduleService;
     }
 
     @GetMapping("/{doctorId}/examination-schedule")
     public List<DoctorExaminationScheduleDto> getDoctorExaminationScheduleList(@PathVariable Long doctorId) {
-        return doctorService.getExaminationScheduleList(doctorId);
+        return doctorExaminationScheduleService.getDoctorExaminationScheduleList(doctorId);
     }
 
     @GetMapping("/{doctorId}/examination-schedule/{id}")
     public ResponseEntity<? extends Object> getDoctorExaminationSchedule(@PathVariable Long doctorId, @PathVariable Long id) {
         try {
-            Optional<DoctorExaminationScheduleDto> doctorExaminationScheduleDto = doctorService.getExaminationSchedule(doctorId, id);
+            Optional<DoctorExaminationScheduleDto> doctorExaminationScheduleDto =
+                    doctorExaminationScheduleService.getDoctorExaminationSchedule(doctorId, id);
 
             return Response.of(
                     doctorExaminationScheduleDto,
@@ -56,7 +56,7 @@ public class DoctorExaminationSchedulesController implements DoctorsNamespace {
         }
 
         try {
-            DoctorExaminationScheduleDto doctorExaminationScheduleDto = doctorService.createExaminationSchedule(
+            DoctorExaminationScheduleDto doctorExaminationScheduleDto = doctorExaminationScheduleService.createDoctorExaminationSchedule(
                     doctorId,
                     doctorExaminationScheduleCreateDto
             );
@@ -79,7 +79,7 @@ public class DoctorExaminationSchedulesController implements DoctorsNamespace {
         }
 
         try {
-            DoctorExaminationScheduleDto doctorExaminationScheduleDto = doctorService.updateExaminationSchedule(
+            DoctorExaminationScheduleDto doctorExaminationScheduleDto = doctorExaminationScheduleService.updateDoctorExaminationSchedule(
                     doctorId,
                     id,
                     doctorExaminationScheduleUpdateDto
@@ -91,16 +91,15 @@ public class DoctorExaminationSchedulesController implements DoctorsNamespace {
         }
     }
 
-//    @DeleteMapping("/{doctorId}/examination-schedule/{id}")
-//    public ResponseEntity<? extends Object> deleteMedicalSpecialty(@PathVariable Long doctorId, @PathVariable Long id) {
-//        try {
-//            MedicalSpecialtyDto medicalSpecialtyDto = doctorService.delete(id);
-//
-//            return ResponseEntity.ok(medicalSpecialtyDto);
-//        } catch (EntityNotFoundException ex) {
-//            return Response.notFound(id);
-//        }
-//    }
+    @DeleteMapping("/{doctorId}/examination-schedule/{id}")
+    public ResponseEntity<? extends Object> deleteMedicalSpecialty(@PathVariable Long doctorId, @PathVariable Long id) {
+        try {
+            DoctorExaminationScheduleDto doctorExaminationScheduleDto =
+                    doctorExaminationScheduleService.deleteDoctorExaminationSchedule(doctorId, id);
 
-
+            return ResponseEntity.ok(doctorExaminationScheduleDto);
+        } catch (EntityNotFoundException ex) {
+            return Response.notFound(id);
+        }
+    }
 }
